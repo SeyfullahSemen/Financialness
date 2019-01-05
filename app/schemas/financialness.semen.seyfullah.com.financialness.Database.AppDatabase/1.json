@@ -1,0 +1,91 @@
+{
+  "formatVersion": 1,
+  "database": {
+    "version": 1,
+    "identityHash": "92e45bec0a5fc12ec4080e8f2c4a45d1",
+    "entities": [
+      {
+        "tableName": "Income",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`income_id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `income` REAL NOT NULL)",
+        "fields": [
+          {
+            "fieldPath": "incomeId",
+            "columnName": "income_id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "income",
+            "columnName": "income",
+            "affinity": "REAL",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "income_id"
+          ],
+          "autoGenerate": true
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "SavingsSetAside",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`setAsideId` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `setAside` REAL NOT NULL)",
+        "fields": [
+          {
+            "fieldPath": "setAsideId",
+            "columnName": "setAsideId",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "setAside",
+            "columnName": "setAside",
+            "affinity": "REAL",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "setAsideId"
+          ],
+          "autoGenerate": true
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "TotalSaved",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`totalSavedId` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `totalsaved` REAL NOT NULL)",
+        "fields": [
+          {
+            "fieldPath": "TotalSavedId",
+            "columnName": "totalSavedId",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "totalsaved",
+            "columnName": "totalsaved",
+            "affinity": "REAL",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "totalSavedId"
+          ],
+          "autoGenerate": true
+        },
+        "indices": [],
+        "foreignKeys": []
+      }
+    ],
+    "setupQueries": [
+      "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, \"92e45bec0a5fc12ec4080e8f2c4a45d1\")"
+    ]
+  }
+}

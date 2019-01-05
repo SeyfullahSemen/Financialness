@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#6200ea</color>
+    <color name ="colorAccent">#00e676</color>
+    <color name="gradientColor">#1a237e</color>
+    <color name="cardColor">#C4C4C4</color>
+    <color name="separatorColor">#fafafa</color>
+    <color name="lightGreen">#66bb6a</color>
+    <color name="lighterGreen">#81c784</color>
+    <color name="bestGreen">#00e676</color>
+    <color name="lightRed">#ef5350</color>
+    <color name="lighterRed">#ff7043</color>
+    <color name="lightBlue">#4fc3f7</color>
+    <color name="lightPurple">#b39ddb</color>
+    <color name="littleDarkerPurple">#7e57c2</color>
+    <color name="darkerPurple">#673ab7</color>
+    <color name="deepPurple">#6200ea</color>
+    <color name="sabrinaPurple">#f4900d</color>
+    <color name="tabbarGray">#e0e0e0</color>
+    <color name="blue1">#162c4e</color>
+    <color name="blue2">#235576</color>
+    <color name="blue3">#4091B0</color>
+    <color name="textColor">#444444</color>
+    <!--#00e676-->
+</resources>

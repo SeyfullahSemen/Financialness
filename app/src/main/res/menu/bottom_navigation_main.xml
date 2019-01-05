@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+
+    >
+    <item
+        android:id="@+id/income_page"
+        android:enabled="true"
+        android:icon="@drawable/pay_main_menu"
+        android:title="@string/income_menu"
+        app:showAsAction="ifRoom" />
+
+
+    <item
+        android:id="@+id/save_page"
+        android:enabled="true"
+        android:icon="@drawable/piggy_bank"
+        android:title="@string/spendings_menu"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/home_page"
+        android:enabled="true"
+        android:icon="@drawable/house_building_outline"
+        android:title="@string/home_menu"
+        app:showAsAction="ifRoom" />
+</menu>

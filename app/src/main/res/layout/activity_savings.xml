@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_layout_savings_activity"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
+    tools:context=".SavingsActivity">
+
+
+    <android.support.design.widget.BottomNavigationView
+        android:id="@+id/bottom_navigation_savings_page"
+        android:layout_width="match_parent"
+        android:layout_height="57dp"
+        android:layout_alignParentBottom="true"
+        android:background="@color/blue1"
+        android:translationZ="5dp"
+        app:itemIconTint="@color/bottom_nav_selection_color"
+        app:itemTextColor="@color/bottom_nav_selection_color"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:menu="@menu/bottom_navigation_main" />
+
+
+    <LinearLayout
+        android:id="@+id/linearLayoutInputFields"
+        android:layout_width="275dp"
+        android:layout_height="264dp"
+        android:layout_marginTop="216dp"
+        android:layout_marginBottom="8dp"
+        android:elevation="20dp"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:translationZ="15dp"
+        app:layout_constraintBottom_toTopOf="@+id/bottom_navigation_savings_page"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.504">
+
+
+        <EditText
+            android:id="@+id/LastIncomeEdit"
+            android:layout_width="wrap_content"
+            android:layout_height="55dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="25dp"
+            android:background="@android:color/white"
+            android:ems="7"
+            android:enabled="false"
+            android:fontFamily="@font/nunito"
+            android:gravity="center"
+            android:inputType="numberDecimal"
+            android:text=""
+            android:textAlignment="center"
+            android:textColor="@android:color/black"
+            android:textColorHint="@android:color/black"
+            android:textSize="25sp"
+            android:translationZ="1dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <EditText
+            android:id="@+id/setAsideEditText"
+            android:layout_width="wrap_content"
+            android:layout_height="55dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="8dp"
+            android:background="@android:color/white"
+            android:ems="7"
+            android:fontFamily="@font/nunito"
+            android:hint="@string/set_aside_edittext_hint"
+            android:inputType="numberDecimal"
+            android:textAlignment="center"
+            android:textColor="@android:color/black"
+            android:textColorHint="@android:color/darker_gray"
+            android:textSize="25sp"
+            android:translationZ="1dp"
+            app:layout_constraintBottom_toTopOf="@+id/SaveSetAside"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/LastIncomeEdit" />
+
+        <Button
+            android:id="@+id/SaveSetAside"
+            android:layout_width="144dp"
+            android:layout_height="58dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="15dp"
+            android:background="@drawable/custom_cardview"
+            android:elevation="10dp"
+            android:foreground="?android:attr/selectableItemBackground"
+            android:text="@string/btnsave"
+            android:textColor="@android:color/white"
+            android:textSize="20sp"
+            android:translationZ="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/LastIncomeEdit"
+            app:layout_constraintVertical_bias="0.651" />
+    </LinearLayout>
+
+</android.support.constraint.ConstraintLayout>
