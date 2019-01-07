@@ -1,7 +1,7 @@
 package financialness.semen.seyfullah.com.financialness;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 
 public class SavingsGoalActivity extends AppCompatActivity {
 

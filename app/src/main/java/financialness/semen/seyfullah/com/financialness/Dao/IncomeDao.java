@@ -15,13 +15,13 @@ import financialness.semen.seyfullah.com.financialness.Entity.Income;
  */
 @Dao
 public interface IncomeDao {
-
+    // Select everything there is from the Database.
     @Query("SELECT * FROM Income")
     public LiveData<List<Income>> getAllIncome();
-
+    // Only fetch the incomes and not the id's
     @Query("SELECT income FROM Income")
     LiveData<List<FetchIncomes>> getOnlyIncomes();
-
+    // Insert new Income into the Database.
     @Insert
     void insertNewIncome(Income... income);
 }

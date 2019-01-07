@@ -78,8 +78,10 @@ public class NewMainActivity extends AppCompatActivity implements IsNetworkAvail
     private boolean hasAxesNames = true;
     FirebaseFirestore db = FirebaseFirestore.getInstance();
 
+    // Create new viemodels
     private IncomeViewModel mIncomeViewModel;
     private SavingsViewModel mSavingsViewModel;
+
     private List<Income> mIncomes = new ArrayList<>();
     private List<FetchIncomes> mOnlyIncomes = new ArrayList<>();
 
@@ -89,12 +91,12 @@ public class NewMainActivity extends AppCompatActivity implements IsNetworkAvail
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_main);
         ButterKnife.bind(this);
+        // Initialize the viewmodels.
         mIncomeViewModel = new IncomeViewModel(getApplicationContext());
         mSavingsViewModel = new SavingsViewModel(getApplicationContext());
         generateData(); // This is the call to the method that will fill the graph with the information
-        observeNewAddedValues();
-        calculateOptimumSpend();
-//        mProgressValue.setText(String.valueOf(mProgressBarGoal.getProgress()) + " %"); // Set the value of the progressbar
+        observeNewAddedValues();// call the observer to see if there is any new value added into the db
+        calculateOptimumSpend(); // call the calculate optimum spendings level that a user can spend.
     }
 
     /**
@@ -132,7 +134,7 @@ public class NewMainActivity extends AppCompatActivity implements IsNetworkAvail
     }
 
 
-    /**
+    /*
      * Method to generate data and fill the chart with data.
      * I want to have a connection to firebase to save and retrieve data.
      */
@@ -191,7 +193,9 @@ public class NewMainActivity extends AppCompatActivity implements IsNetworkAvail
 
     }
 
-
+    /*
+     * This function will calculate the optimal money that a user can spend
+     */
     private void calculateOptimumSpend() {
         if (networkAvailable()) {
             db.collection("user_income")
@@ -217,6 +221,10 @@ public class NewMainActivity extends AppCompatActivity implements IsNetworkAvail
     }
 
 
+    /*
+     * This function will look if there is any internet available on the phone of the user.
+     * @return true if there is internet connection
+     */
     @Override
     public boolean networkAvailable() {
         ConnectivityManager connectivityManager
@@ -225,6 +233,9 @@ public class NewMainActivity extends AppCompatActivity implements IsNetworkAvail
         return activeNetworkInfo != null && activeNetworkInfo.isConnected();
     }
 
+    /*
+     * Observe the newly added values into the Database.
+     */
     @Override
     public void observeNewAddedValues() {
         mIncomeViewModel.getAllIncome().observe(this, new Observer<List<Income>>() {

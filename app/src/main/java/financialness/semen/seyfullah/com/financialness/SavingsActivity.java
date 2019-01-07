@@ -43,7 +43,7 @@ public class SavingsActivity extends AppCompatActivity implements NavigationList
     /*
      * Declare all the variables made in the
      * layout file so we can use them in this file to edit them.
-     * */
+     */
     @BindView(R.id.bottom_navigation_savings_page)
     BottomNavigationView mBottomNavigationSavingsPage;
     @BindView(R.id.linearLayoutInputFields)
@@ -69,22 +69,22 @@ public class SavingsActivity extends AppCompatActivity implements NavigationList
     private SavingsViewModel mSavingsViewModel;
     private TotalSavedViewModel mTotalSavedViewModel;
     // Create lists in which the newly added values will be added to.
-    private List<SavingsSetAside> mSavingsSetASide = new ArrayList<>();
-    private List<TotalSaved> mTotalSaved = new ArrayList<>();
+    private List<SavingsSetAside> mSavingsSetASide;
+    private List<TotalSaved> mTotalSaved;
     // Variable to save the last income. This value will be retrieved from firestore.
     private double lastIncome;
-    private boolean financialGoalChanged = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_savings);
         ButterKnife.bind(this); // In order to make Butterknife work, I need to add the bind() method.
-
+        mTotalSaved = new ArrayList<>(); // Make new instance of the list
+        mSavingsSetASide = new ArrayList<>(); // Make a new instance of the list.
         getLastIncome(); // Method which will get the last income. This value will come from the firestore.
         bottomNavigationClickListener(); // Method to survey the clicks on the bottomNavigation.
         mSavingsViewModel = new SavingsViewModel(getApplicationContext()); // Make new instance of the SavingsViewModel.
-        mTotalSavedViewModel = new TotalSavedViewModel(getApplicationContext());
+        mTotalSavedViewModel = new TotalSavedViewModel(getApplicationContext()); // make a new instance of the totalsavedviewmodel
         observeNewAddedValues(); // Observe newly added values.
 
 
@@ -116,23 +116,30 @@ public class SavingsActivity extends AppCompatActivity implements NavigationList
      */
     private void addToTheCurrentSavings(final double addNewSaving) {
         try {
-            mTotalSavedViewModel.getAllTotalSaved().observe(this, new Observer<List<TotalSaved>>() {
-                @Override
-                public void onChanged(@Nullable List<TotalSaved> totalSaveds) {
-                    mTotalSaved = totalSaveds;
-
-                    assert totalSaveds != null;
-                    if (totalSaveds.size() == 0) {
-                        mTotalSavedViewModel.insertTotalSaved(new TotalSaved(addNewSaving));
-                    } else {
-                        double calculation = mTotalSaved.get(mTotalSaved.size() - 1).totalsaved + addNewSaving;
-                        int id = mTotalSaved.get(mTotalSaved.size() - 1).TotalSavedId;
-                        mTotalSavedViewModel.updateTotalSaved(id, calculation);
-                        Log.i(TAG, "onChanged:  " + totalSaveds.get(0).totalsaved);
-                    }
-                }
-            });
-
+            if (mTotalSaved.size() != 0) {
+                mTotalSavedViewModel.insertTotalSaved(new TotalSaved(addNewSaving));
+            }else {
+                double calculation = mTotalSaved.get(mTotalSaved.size() - 1).totalsaved + addNewSaving;
+                int id = mTotalSaved.get(mTotalSaved.size() - 1).TotalSavedId;
+                mTotalSavedViewModel.updateTotalSaved(id, calculation);
+               // Log.i(TAG, "onChanged:  " + totalSaveds.get(0).totalsaved);
+            }
+//            mTotalSavedViewModel.getAllTotalSaved().observe(this, new Observer<List<TotalSaved>>() {
+//                @Override
+//                public void onChanged(@Nullable List<TotalSaved> totalSaveds) {
+//                    mTotalSaved = totalSaveds;
+//
+//                    assert totalSaveds != null;
+//                    if (totalSaveds.size() == 0) {
+//                        mTotalSavedViewModel.insertTotalSaved(new TotalSaved(addNewSaving));
+//                    } else {
+//                        double calculation = mTotalSaved.get(mTotalSaved.size() - 1).totalsaved + addNewSaving;
+//                        int id = mTotalSaved.get(mTotalSaved.size() - 1).TotalSavedId;
+//                        mTotalSavedViewModel.updateTotalSaved(id, calculation);
+//                        Log.i(TAG, "onChanged:  " + totalSaveds.get(0).totalsaved);
+//                    }
+//                }
+//            });
         } catch (
                 Exception ex)
 

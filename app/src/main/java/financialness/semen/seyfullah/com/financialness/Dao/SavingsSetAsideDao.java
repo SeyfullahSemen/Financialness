@@ -14,22 +14,11 @@ import financialness.semen.seyfullah.com.financialness.Entity.SavingsSetAside;
  */
 @Dao
 public interface SavingsSetAsideDao {
-
+    //Select everything from set aside including the id
     @Query("SELECT * FROM SavingsSetAside")
     public LiveData<List<SavingsSetAside>> getAllSetAside();
 
+    // Insert new value for set aside.
     @Insert
     void insertNewSetAside(SavingsSetAside... setAside);
-
-//    @Insert
-//    void insertNewFinancialGoal(double financialGoal);
-//
-//    @Insert
-//    void insertNewTotalSaved(double totalSaved);
-//
-//    @Update
-//    void updateTotalSaved(double totalSaved);
-//
-//    @Update
-//    void updateFinancialGoal(double financialGoal);
 }

@@ -84,7 +84,7 @@ public class IncomeActivity extends AppCompatActivity implements IsNetworkAvaila
     // Initialize the IncomeViewmodel to add Room functionalities.
     private IncomeViewModel mIncomeViewModel;
     // List to hold the data which will be retrieved from the local Database.
-    private List<Income> mIncomes = new ArrayList<>();
+    private List<Income> mIncomes;
 
 
     @RequiresApi(api = Build.VERSION_CODES.M)
@@ -93,6 +93,7 @@ public class IncomeActivity extends AppCompatActivity implements IsNetworkAvaila
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_income);
         ButterKnife.bind(this); // Use Butterknife to bind the view in order to use the components inside the view
+        mIncomes = new ArrayList<>();
         mIncomeViewModel = new IncomeViewModel(getApplicationContext());
         getLastIncome(); // This function will get the latest income that a user has gotten
         bottomNavigationClickListener(); // Click events for the bottom navigation are inside this function
@@ -337,12 +338,15 @@ public class IncomeActivity extends AppCompatActivity implements IsNetworkAvaila
                 mIncomes = incomes;
 
                 if (incomes.size() != 0) {
+                    swapList(mIncomes);
                     Log.i(TAG, "income: " + incomes.get(0).income);
                     Log.i(TAG, "income size: " + mIncomes.size());
                 }
-
-
             }
         });
+    }
+
+    public void swapList(List<Income> newList) {
+        mIncomes = newList;
     }
 }
