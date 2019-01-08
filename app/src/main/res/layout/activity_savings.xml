@@ -29,7 +29,7 @@
         android:id="@+id/linearLayoutInputFields"
         android:layout_width="275dp"
         android:layout_height="264dp"
-        android:layout_marginTop="216dp"
+        android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
         android:elevation="20dp"
         android:gravity="center"
@@ -38,8 +38,8 @@
         app:layout_constraintBottom_toTopOf="@+id/bottom_navigation_savings_page"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.504">
+        app:layout_constraintTop_toBottomOf="@+id/textView4"
+        app:layout_constraintVertical_bias="0.606">
 
 
         <EditText
@@ -104,5 +104,16 @@
             app:layout_constraintTop_toBottomOf="@+id/LastIncomeEdit"
             app:layout_constraintVertical_bias="0.651" />
     </LinearLayout>
+
+    <TextView
+        android:id="@+id/totalsavedText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="104dp"
+        style="@style/textstyling"
+        android:text=""
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </android.support.constraint.ConstraintLayout>

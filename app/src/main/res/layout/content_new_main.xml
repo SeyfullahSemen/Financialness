@@ -107,15 +107,13 @@
 
         <TextView
             android:id="@+id/optimaleUitgaveText"
+            style="@style/textstyling"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="15dp"
-            android:fontFamily="@font/nunito"
             android:text=""
-            android:textAlignment="center"
-            android:textColor="@color/blue3"
-            android:textSize="40sp" />
+            android:textColor="@color/blue3" />
 
         <TextView
             android:id="@+id/textView11"

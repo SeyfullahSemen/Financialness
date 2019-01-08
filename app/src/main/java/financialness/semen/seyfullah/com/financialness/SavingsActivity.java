@@ -1,5 +1,6 @@
 package financialness.semen.seyfullah.com.financialness;
 
+import android.annotation.SuppressLint;
 import android.arch.lifecycle.Observer;
 import android.content.Intent;
 import android.os.Bundle;
@@ -15,6 +16,7 @@ import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -56,6 +58,8 @@ public class SavingsActivity extends AppCompatActivity implements NavigationList
     Button mSaveSetAside;
     @BindView(R.id.main_layout_savings_activity)
     ConstraintLayout mMainlayoutSavingsActivity;
+    @BindView(R.id.totalsavedText)
+    TextView mTotalSavedText;
     /*
      * Create two HashMaps. The reason I do this is
      * because I use firestore to store some values.
@@ -86,6 +90,15 @@ public class SavingsActivity extends AppCompatActivity implements NavigationList
         mSavingsViewModel = new SavingsViewModel(getApplicationContext()); // Make new instance of the SavingsViewModel.
         mTotalSavedViewModel = new TotalSavedViewModel(getApplicationContext()); // make a new instance of the totalsavedviewmodel
         observeNewAddedValues(); // Observe newly added values.
+        mTotalSavedViewModel.getAllTotalSaved().observe(this, new Observer<List<TotalSaved>>() {
+            @Override
+            public void onChanged(@Nullable List<TotalSaved> totalSaveds) {
+                mTotalSaved = totalSaveds;
+                mTotalSavedText.setText(""+mTotalSaved.get(mTotalSaved.size() - 1).totalsaved);
+
+            }
+        });
+
 
 
     }
@@ -114,36 +127,27 @@ public class SavingsActivity extends AppCompatActivity implements NavigationList
      *
      * @param addNewSaving
      */
+    @SuppressLint("SetTextI18n")
     private void addToTheCurrentSavings(final double addNewSaving) {
         try {
-            if (mTotalSaved.size() != 0) {
+            mTotalSavedViewModel.getAllTotalSaved().observe(this, new Observer<List<TotalSaved>>() {
+                @Override
+                public void onChanged(@Nullable List<TotalSaved> totalSaveds) {
+                    mTotalSaved = totalSaveds;
+                    swapTotalSavedList(totalSaveds);
+
+                }
+            });
+            if (mTotalSaved.size() == 0) {
                 mTotalSavedViewModel.insertTotalSaved(new TotalSaved(addNewSaving));
-            }else {
+            } else {
                 double calculation = mTotalSaved.get(mTotalSaved.size() - 1).totalsaved + addNewSaving;
+                Log.i(TAG, "addToTheCurrentSavings: " + mTotalSaved.get(mTotalSaved.size() - 1).totalsaved);
                 int id = mTotalSaved.get(mTotalSaved.size() - 1).TotalSavedId;
                 mTotalSavedViewModel.updateTotalSaved(id, calculation);
-               // Log.i(TAG, "onChanged:  " + totalSaveds.get(0).totalsaved);
+                mTotalSavedText.setText(""+mTotalSaved.get(mTotalSaved.size() - 1).totalsaved);
             }
-//            mTotalSavedViewModel.getAllTotalSaved().observe(this, new Observer<List<TotalSaved>>() {
-//                @Override
-//                public void onChanged(@Nullable List<TotalSaved> totalSaveds) {
-//                    mTotalSaved = totalSaveds;
-//
-//                    assert totalSaveds != null;
-//                    if (totalSaveds.size() == 0) {
-//                        mTotalSavedViewModel.insertTotalSaved(new TotalSaved(addNewSaving));
-//                    } else {
-//                        double calculation = mTotalSaved.get(mTotalSaved.size() - 1).totalsaved + addNewSaving;
-//                        int id = mTotalSaved.get(mTotalSaved.size() - 1).TotalSavedId;
-//                        mTotalSavedViewModel.updateTotalSaved(id, calculation);
-//                        Log.i(TAG, "onChanged:  " + totalSaveds.get(0).totalsaved);
-//                    }
-//                }
-//            });
-        } catch (
-                Exception ex)
-
-        {
+        } catch (Exception ex) {
             Log.i(TAG, "There is something wrong with adding up new set aside value:  " + ex.getMessage());
         }
 
@@ -213,6 +217,7 @@ public class SavingsActivity extends AppCompatActivity implements NavigationList
             @Override
             public void onChanged(@Nullable List<SavingsSetAside> asides) {
                 mSavingsSetASide = asides;
+                swapList(asides);
             }
         });
 
@@ -225,6 +230,7 @@ public class SavingsActivity extends AppCompatActivity implements NavigationList
             @Override
             public void onChanged(@Nullable List<TotalSaved> totalSaveds) {
                 mTotalSaved = totalSaveds;
+                swapTotalSavedList(totalSaveds);
 
             }
         });
@@ -279,5 +285,20 @@ public class SavingsActivity extends AppCompatActivity implements NavigationList
                     }
                 });
 
+    }
+
+    public void swapList(List<SavingsSetAside> newList) {
+        if (mSavingsSetASide.size() != 0) {
+            Log.i(TAG, "swapList: " + mSavingsSetASide.size());
+        }
+        mSavingsSetASide = newList;
+    }
+
+    public List<TotalSaved> swapTotalSavedList(List<TotalSaved> newList) {
+        if (mTotalSaved.size() != 0) {
+            Log.i(TAG, "swapTotalSavedList: " + mTotalSaved.size());
+        }
+        mTotalSaved = newList;
+        return mTotalSaved;
     }
 }
