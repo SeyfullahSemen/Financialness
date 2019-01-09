@@ -20,12 +20,21 @@ import financialness.semen.seyfullah.com.financialness.R;
  * Created by Seyfullah Semen on 25-10-2018.
  */
 public class SliderAdapter extends PagerAdapter {
+    /*
+     * Declare variables which I need to use in the application.
+     */
     private Context mContext;
     private List<String> incomeList;
     private List<Integer> icons;
     private List<String> sliderTitles;
 
-    //TODO: Figure out how
+    /*
+     *
+     * @param context
+     * @param incomeList
+     * @param icons
+     * @param sliderTitles
+     */
     public SliderAdapter(Context context, List<String> incomeList, List<Integer> icons, List<String> sliderTitles) {
         this.mContext = context;
         this.incomeList = incomeList;
@@ -33,16 +42,32 @@ public class SliderAdapter extends PagerAdapter {
         this.icons = icons;
     }
 
+    /*
+     *
+     * @return
+     */
     @Override
     public int getCount() {
         return incomeList.size();
     }
 
+    /*
+     *
+     * @param view
+     * @param o
+     * @return
+     */
     @Override
     public boolean isViewFromObject(@NonNull View view, @NonNull Object o) {
         return view == o;
     }
 
+    /*
+     *
+     * @param container
+     * @param position
+     * @return
+     */
     @NonNull
     @Override
     public Object instantiateItem(ViewGroup container, int position) {
@@ -67,6 +92,12 @@ public class SliderAdapter extends PagerAdapter {
 
     }
 
+    /*
+     *
+     * @param container
+     * @param position
+     * @param object
+     */
     @Override
     public void destroyItem(ViewGroup container, int position, Object object) {
         ViewPager viewPager = (ViewPager) container;

@@ -236,7 +236,9 @@ public class SavingsActivity extends AppCompatActivity implements NavigationList
         });
     }
 
-
+    /*
+     *
+     */
     @Override
     public void onBackPressed() {
         super.onBackPressed();
@@ -287,6 +289,9 @@ public class SavingsActivity extends AppCompatActivity implements NavigationList
 
     }
 
+    /*
+     * @param newList
+     */
     public void swapList(List<SavingsSetAside> newList) {
         if (mSavingsSetASide.size() != 0) {
             Log.i(TAG, "swapList: " + mSavingsSetASide.size());
@@ -294,6 +299,10 @@ public class SavingsActivity extends AppCompatActivity implements NavigationList
         mSavingsSetASide = newList;
     }
 
+    /*
+     * @param newList
+     * @return
+     */
     public List<TotalSaved> swapTotalSavedList(List<TotalSaved> newList) {
         if (mTotalSaved.size() != 0) {
             Log.i(TAG, "swapTotalSavedList: " + mTotalSaved.size());

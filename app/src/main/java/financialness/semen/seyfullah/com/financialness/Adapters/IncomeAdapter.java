@@ -18,14 +18,27 @@ import financialness.semen.seyfullah.com.financialness.ViewHolders.IncomeViewHol
  */
 public class IncomeAdapter extends RecyclerView.Adapter<IncomeViewHolder> {
 
+    // List of incomes
     private List<Income> mIncomes;
+    // Context context
     private Context mContext;
 
+    /**
+     *
+     * @param mIncomes
+     * @param mContext
+     */
     public IncomeAdapter(List<Income> mIncomes, Context mContext) {
         this.mIncomes = mIncomes;
         this.mContext = mContext;
     }
 
+    /*
+     *
+     * @param viewGroup
+     * @param i
+     * @return
+     */
     @NonNull
     @Override
     public IncomeViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
@@ -36,6 +49,11 @@ public class IncomeAdapter extends RecyclerView.Adapter<IncomeViewHolder> {
         return new IncomeViewHolder(view);
     }
 
+    /*
+     *
+     * @param viewHolder
+     * @param i
+     */
     @Override
     public void onBindViewHolder(@NonNull IncomeViewHolder viewHolder, int i) {
         Income income = mIncomes.get(i);
@@ -44,11 +62,19 @@ public class IncomeAdapter extends RecyclerView.Adapter<IncomeViewHolder> {
         viewHolder.mIncomeOfUser.setText(String.valueOf(income.income));
     }
 
+    /*
+     *
+     * @return
+     */
     @Override
     public int getItemCount() {
         return mIncomes.size();
     }
 
+    /*
+     *
+     * @param newList
+     */
     public void swapList(List<Income> newList) {
         mIncomes = newList;
         if (newList != null) {

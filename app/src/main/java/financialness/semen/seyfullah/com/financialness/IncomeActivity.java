@@ -93,7 +93,7 @@ public class IncomeActivity extends AppCompatActivity implements IsNetworkAvaila
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_income);
         ButterKnife.bind(this); // Use Butterknife to bind the view in order to use the components inside the view
-        mIncomes = new ArrayList<>();
+        mIncomes = new ArrayList<>(); // make new income list array list
         mIncomeViewModel = new IncomeViewModel(getApplicationContext());
         getLastIncome(); // This function will get the latest income that a user has gotten
         bottomNavigationClickListener(); // Click events for the bottom navigation are inside this function

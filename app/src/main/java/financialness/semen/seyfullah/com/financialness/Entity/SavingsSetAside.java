@@ -19,11 +19,4 @@ public class SavingsSetAside {
         this.setAside = setAside;
     }
 
-//    @ColumnInfo(name = "totalSaved")
-//    public double totalSaved;
-//
-//    @ColumnInfo(name = "financialGoal")
-//    public float financialGoal;
-
-
 }

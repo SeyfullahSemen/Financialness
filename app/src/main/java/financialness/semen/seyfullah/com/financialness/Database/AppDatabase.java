@@ -15,7 +15,7 @@ import financialness.semen.seyfullah.com.financialness.Entity.TotalSaved;
 /*
  * Created by Seyfullah Semen on 15-12-2018.
  */
-@Database(entities = {Income.class, SavingsSetAside.class,TotalSaved.class}, version = 1)
+@Database(entities = {Income.class, SavingsSetAside.class, TotalSaved.class}, version = 1)
 public abstract class AppDatabase extends RoomDatabase {
     public abstract IncomeDao incomeDao();
 

@@ -48,16 +48,16 @@ public class IncomeListActivity extends AppCompatActivity implements NavigationL
         ButterKnife.bind(this); // Bind the view so butterknife will know.
 
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
-        mIncomes = new ArrayList<>();
+        mIncomes = new ArrayList<>();// Make a new instance of the incomes list
 
-        mRecyclerView.setAdapter(mAdapter);
+        mRecyclerView.setAdapter(mAdapter); // Set the adapter for the recyclerview
 
-        mIncomeViewModel = new IncomeViewModel(getApplicationContext());
+        mIncomeViewModel = new IncomeViewModel(getApplicationContext()); // Make a new instance of the viewmodel
         mIncomeViewModel.getAllIncome().observe(this, new Observer<List<Income>>() {
             @Override
             public void onChanged(@Nullable List<Income> incomes) {
                 mIncomes = incomes;
-                updateUI();
+                updateUI();// When new values have been added than the recyclerview will be notified.
 
                 if (incomes.size() != 0) {
                     Log.i(TAG, "income: " + incomes.get(0).income);
@@ -66,7 +66,7 @@ public class IncomeListActivity extends AppCompatActivity implements NavigationL
             }
         });
 
-        bottomNavigationClickListener();
+        bottomNavigationClickListener();// listener for when somebody clicks on one of the buttons in the bottom navigation
 
     }
 
@@ -83,6 +83,9 @@ public class IncomeListActivity extends AppCompatActivity implements NavigationL
         }
     }
 
+    /**
+     * When the back button has been pressed I want the user to go back to the income page.
+     */
     @Override
     public void onBackPressed() {
         super.onBackPressed();

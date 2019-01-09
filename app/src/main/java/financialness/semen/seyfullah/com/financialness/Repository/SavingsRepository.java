@@ -15,23 +15,33 @@ import financialness.semen.seyfullah.com.financialness.Entity.SavingsSetAside;
  * Created by Seyfullah Semen on 16-12-2018.
  */
 public class SavingsRepository {
-
+    /*
+     *
+     */
     private AppDatabase mAppDatabase;
     private SavingsSetAsideDao mSavingsSetAsideDao;
     private LiveData<List<SavingsSetAside>> mSetAside;
     private Executor mExecutor = Executors.newSingleThreadExecutor();
 
+    /*
+     * @param context
+     */
     public SavingsRepository(Context context) {
         mAppDatabase = AppDatabase.getInstance(context);
         mSavingsSetAsideDao = mAppDatabase.savingsDao();
         mSetAside = mSavingsSetAsideDao.getAllSetAside();
     }
 
+    /*
+     * @return
+     */
     public LiveData<List<SavingsSetAside>> getAllSetAside() {
         return mSetAside;
     }
 
-
+    /*
+     * @param setAside
+     */
     public void insertNewSetAside(final SavingsSetAside setAside) {
         mExecutor.execute(new Runnable() {
             @Override

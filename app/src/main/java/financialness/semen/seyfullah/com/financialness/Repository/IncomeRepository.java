@@ -16,13 +16,19 @@ import financialness.semen.seyfullah.com.financialness.Entity.Income;
  * Created by Seyfullah Semen on 15-12-2018.
  */
 public class IncomeRepository {
-
+    /*
+     * Declare all the variables
+     */
     private AppDatabase mAppDatabase;
     private IncomeDao mIncomeDao;
     private LiveData<List<Income>> mIncomes;
     private LiveData<List<FetchIncomes>> mIncomeOnly;
     private Executor mExecutor = Executors.newSingleThreadExecutor();
 
+    /*
+     *
+     * @param context
+     */
     public IncomeRepository(Context context) {
         mAppDatabase = AppDatabase.getInstance(context);
         mIncomeDao = mAppDatabase.incomeDao();
@@ -30,14 +36,24 @@ public class IncomeRepository {
         mIncomeOnly = mIncomeDao.getOnlyIncomes();
     }
 
+    /*
+     *
+     * @return
+     */
     public LiveData<List<Income>> getAllIncomes() {
         return mIncomes;
     }
 
+    /*
+     * @return
+     */
     public LiveData<List<FetchIncomes>> getIncomeOnly() {
         return mIncomeOnly;
     }
 
+    /*
+     * @param income
+     */
     public void insert(final Income income) {
         mExecutor.execute(new Runnable() {
             @Override

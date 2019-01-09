@@ -69,11 +69,17 @@ public class NewMainActivity extends AppCompatActivity implements IsNetworkAvail
     private int maxNumberOfLines = 4;
     private int numberOfPoints = 13;
 
+    /*
+     *
+     */
     List<AxisValue> xAxisValue = new ArrayList<>();
     Axis axisX = new Axis();
     private LineChartData data = new LineChartData();
     float[][] randomNumbersTab = new float[maxNumberOfLines][numberOfPoints];
 
+    /*
+     *
+     */
     private boolean hasAxes = true;
     private boolean hasAxesNames = true;
     FirebaseFirestore db = FirebaseFirestore.getInstance();
@@ -82,10 +88,15 @@ public class NewMainActivity extends AppCompatActivity implements IsNetworkAvail
     private IncomeViewModel mIncomeViewModel;
     private SavingsViewModel mSavingsViewModel;
 
+    /*
+     *
+     */
     private List<Income> mIncomes = new ArrayList<>();
     private List<FetchIncomes> mOnlyIncomes = new ArrayList<>();
 
-
+    /*
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

@@ -25,4 +25,5 @@
     <string name="voer_een_bedrag_in">Voeg AUB een bedrag toe</string>
     <string name="exception_error_message">Something went wrong!</string>
     <string name="income_item_text">Income:</string>
+    <string name="total_saved_header">total saved</string>
 </resources>
