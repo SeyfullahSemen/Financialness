@@ -28,4 +28,5 @@
     <string name="total_saved_header">total saved</string>
 
     <string name="euro_sign">€\t</string>
+    <string name="deleted_income">Inkomen is verwijderd</string>
 </resources>

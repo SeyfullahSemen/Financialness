@@ -63,5 +63,17 @@ public class IncomeRepository {
         });
     }
 
+    /*
+     *
+     * @param income
+     */
+    public void deleteIncome(final Income income) {
+        mExecutor.execute(new Runnable() {
+            @Override
+            public void run() {
+                mIncomeDao.deleteIncome(income);
+            }
+        });
+    }
 
 }

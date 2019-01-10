@@ -10,8 +10,10 @@ import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.helper.ItemTouchHelper;
 import android.util.Log;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -65,6 +67,7 @@ public class IncomeListActivity extends AppCompatActivity implements NavigationL
                 }
             }
         });
+        handleSwipe(mAdapter, mRecyclerView);
 
         bottomNavigationClickListener();// listener for when somebody clicks on one of the buttons in the bottom navigation
 
@@ -139,5 +142,39 @@ public class IncomeListActivity extends AppCompatActivity implements NavigationL
                         return true;
                     }
                 });
+    }
+
+    /**
+     * If items are swiped left delete the item.
+     *
+     * @param mAdapter
+     * @param mGeoRecyclerView
+     */
+    private void handleSwipe(final IncomeAdapter mAdapter, RecyclerView mGeoRecyclerView) {
+        ItemTouchHelper.SimpleCallback simpleItemTouchCallback = new ItemTouchHelper.SimpleCallback(
+                0,
+                ItemTouchHelper.LEFT
+        ) {
+            @Override
+            public boolean onMove(
+                    RecyclerView recyclerView,
+                    RecyclerView.ViewHolder viewHolder,
+                    RecyclerView.ViewHolder target) {
+                return false;
+            }
+
+            @Override
+            public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction) {
+                int position = viewHolder.getAdapterPosition();
+                mIncomeViewModel.deleteIncome(mIncomes.get(position));
+                Toast.makeText(
+                        IncomeListActivity.this,
+                        R.string.deleted_income,
+                        Toast.LENGTH_SHORT
+                ).show();
+            }
+        };
+        ItemTouchHelper itemTouchHelper = new ItemTouchHelper(simpleItemTouchCallback);
+        itemTouchHelper.attachToRecyclerView(mGeoRecyclerView);
     }
 }

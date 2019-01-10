@@ -51,4 +51,11 @@ public class IncomeViewModel extends ViewModel {
     public void insertIncome(Income income) {
         mIncomeRepository.insert(income);
     }
+
+    /*
+     * @param income
+     */
+    public void deleteIncome(Income income) {
+        mIncomeRepository.deleteIncome(income);
+    }
 }

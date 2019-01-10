@@ -2,6 +2,7 @@ package financialness.semen.seyfullah.com.financialness.Dao;
 
 import android.arch.lifecycle.LiveData;
 import android.arch.persistence.room.Dao;
+import android.arch.persistence.room.Delete;
 import android.arch.persistence.room.Insert;
 import android.arch.persistence.room.Query;
 
@@ -18,10 +19,16 @@ public interface IncomeDao {
     // Select everything there is from the Database.
     @Query("SELECT * FROM Income")
     public LiveData<List<Income>> getAllIncome();
+
     // Only fetch the incomes and not the id's
     @Query("SELECT income FROM Income")
     LiveData<List<FetchIncomes>> getOnlyIncomes();
+
     // Insert new Income into the Database.
     @Insert
     void insertNewIncome(Income... income);
+
+    // Delete income
+    @Delete
+    public void deleteIncome(Income income);
 }
