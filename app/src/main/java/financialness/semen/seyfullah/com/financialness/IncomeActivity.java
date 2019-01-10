@@ -14,11 +14,11 @@ import android.support.annotation.RequiresApi;
 import android.support.constraint.ConstraintLayout;
 import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.MenuItem;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -127,12 +127,18 @@ public class IncomeActivity extends AppCompatActivity implements IsNetworkAvaila
                 double newIncome = Double.valueOf(newIncomeString);
                 addNewIncomeWithRoom(newIncome);
                 addNewIncome(newIncome);
-                Snackbar snackbar = Snackbar.make(mMainLayoutIncomeActivity, getResources().getString(R.string.income_has_been_added), Snackbar.LENGTH_LONG);
-                snackbar.show();
+                Toast.makeText(
+                        IncomeActivity.this,
+                        getResources().getString(R.string.income_has_been_added),
+                        Toast.LENGTH_SHORT
+                ).show();
                 mEditTextIncome.setText("");
             } else {
-                Snackbar snackbar = Snackbar.make(mMainLayoutIncomeActivity, getResources().getString(R.string.vul_een_inkomen_in), Snackbar.LENGTH_LONG);
-                snackbar.show();
+                Toast.makeText(
+                        IncomeActivity.this,
+                        getResources().getString(R.string.vul_een_inkomen_in),
+                        Toast.LENGTH_SHORT
+                ).show();
                 mEditTextIncome.setText("");
             }
         } catch (Exception ex) {
