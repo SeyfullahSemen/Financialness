@@ -344,7 +344,6 @@ public class IncomeActivity extends AppCompatActivity implements IsNetworkAvaila
                 mIncomes = incomes;
 
                 if (incomes.size() != 0) {
-                    swapList(mIncomes);
                     Log.i(TAG, "income: " + incomes.get(0).income);
                     Log.i(TAG, "income size: " + mIncomes.size());
                 }
@@ -352,11 +351,4 @@ public class IncomeActivity extends AppCompatActivity implements IsNetworkAvaila
         });
     }
 
-    /*
-     * Update the List of incomes after changes have been made
-     * @param newList
-     */
-    public void swapList(List<Income> newList) {
-        mIncomes = newList;
-    }
 }
