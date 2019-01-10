@@ -26,7 +26,10 @@
     <string name="exception_error_message">Something went wrong!</string>
     <string name="income_item_text">Income:</string>
     <string name="total_saved_header">total saved</string>
+    <string name="income_has_been_added">"Inkomen is toegevoegd"</string>
+    <string name="vul_een_inkomen_in">"Vul je inkomen eerst in"</string>
 
     <string name="euro_sign">€\t</string>
     <string name="deleted_income">Inkomen is verwijderd</string>
+    <string name="general_error_message">Er is een error</string>
 </resources>

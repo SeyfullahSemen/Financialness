@@ -79,7 +79,7 @@ public class NewMainActivity extends AppCompatActivity implements IsNetworkAvail
      * I just need to pass these two values to it.
      */
     private boolean hasAxes = true;
-    private boolean hasAxesNames = true;
+    private boolean hasAxesNames = false;
     private boolean isInteractive = true;
     private boolean isSelectionEnabled = true;
 
@@ -235,7 +235,7 @@ public class NewMainActivity extends AppCompatActivity implements IsNetworkAvail
 
                                 }
                             } else {
-                                Log.w(TAG, "Error getting documents.", task.getException());
+                                Log.w(TAG, getResources().getString(R.string.general_error_message), task.getException());
                             }
                         }
                     });

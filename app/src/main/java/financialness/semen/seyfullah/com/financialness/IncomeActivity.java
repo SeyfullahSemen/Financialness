@@ -49,8 +49,9 @@ import lecho.lib.hellocharts.model.PointValue;
 import lecho.lib.hellocharts.view.LineChartView;
 
 public class IncomeActivity extends AppCompatActivity implements IsNetworkAvailableListener, NavigationListener, ObserveValuesListener {
+
     private static final String TAG = IncomeActivity.class.getSimpleName();
-    /**
+    /*
      * Use butterknife to bind view components to the view.
      * These are all the components within the incomeactivity.
      */
@@ -72,7 +73,7 @@ public class IncomeActivity extends AppCompatActivity implements IsNetworkAvaila
     private LineChartData data = new LineChartData();
 
     private boolean hasAxes = true;
-    private boolean hasAxesNames = true;
+    private boolean hasAxesNames = false;
 
     // I use a hashmap because the data I get from firestore is in JSON format
     private Map<String, Double> income = new HashMap<>();
@@ -125,16 +126,16 @@ public class IncomeActivity extends AppCompatActivity implements IsNetworkAvaila
                 double newIncome = Double.valueOf(newIncomeString);
                 addNewIncomeWithRoom(newIncome);
                 addNewIncome(newIncome);
-                Snackbar snackbar = Snackbar.make(mMainLayoutIncomeActivity, "Inkomen is toegevoegd", Snackbar.LENGTH_LONG);
+                Snackbar snackbar = Snackbar.make(mMainLayoutIncomeActivity, getResources().getString(R.string.income_has_been_added), Snackbar.LENGTH_LONG);
                 snackbar.show();
                 mEditTextIncome.setText("");
             } else {
-                Snackbar snackbar = Snackbar.make(mMainLayoutIncomeActivity, "Vul je inkomen eerst in", Snackbar.LENGTH_LONG);
+                Snackbar snackbar = Snackbar.make(mMainLayoutIncomeActivity, getResources().getString(R.string.vul_een_inkomen_in), Snackbar.LENGTH_LONG);
                 snackbar.show();
                 mEditTextIncome.setText("");
             }
         } catch (Exception ex) {
-            Log.i(TAG, "Something went wrong " + ex.getMessage());
+            Log.i(TAG, getResources().getString(R.string.general_error_message) + ex.getMessage());
         }
     }
 
@@ -223,7 +224,7 @@ public class IncomeActivity extends AppCompatActivity implements IsNetworkAvaila
                                     Log.d(TAG, document.getId() + " => " + Double.valueOf(document.getData().get("income").toString()));
                                 }
                             } else {
-                                Log.w(TAG, "Error getting documents.", task.getException());
+                                Log.w(TAG, getResources().getString(R.string.general_error_message), task.getException());
                             }
                         }
                     });
@@ -254,7 +255,7 @@ public class IncomeActivity extends AppCompatActivity implements IsNetworkAvaila
                     .addOnFailureListener(new OnFailureListener() {
                         @Override
                         public void onFailure(@NonNull Exception e) {
-                            Log.w(TAG, "Error writing document", e);
+                            Log.w(TAG, getResources().getString(R.string.general_error_message), e);
                         }
                     });
         } else {
@@ -270,7 +271,7 @@ public class IncomeActivity extends AppCompatActivity implements IsNetworkAvaila
         try {
             mIncomeViewModel.insertIncome(new Income(income));
         } catch (Exception ex) {
-            Log.d(TAG, "Found exception while adding: " + ex.getMessage());
+            Log.d(TAG, getResources().getString(R.string.general_error_message) + ex.getMessage());
         }
     }
 

@@ -138,7 +138,7 @@ public class SavingsActivity extends AppCompatActivity implements NavigationList
                 mTotalSavedText.setText("" + mTotalSaved.get(mTotalSaved.size() - 1).totalsaved);
             }
         } catch (Exception ex) {
-            Log.i(TAG, "There is something wrong with adding up new set aside value:  " + ex.getMessage());
+            Log.i(TAG, getResources().getString(R.string.general_error_message) + ex.getMessage());
         }
 
     }
@@ -186,7 +186,7 @@ public class SavingsActivity extends AppCompatActivity implements NavigationList
                                 lastIncome = Double.valueOf(document.getData().get("income").toString());
                             }
                         } else {
-                            Log.w(TAG, "Error getting documents.", task.getException());
+                            Log.w(TAG, getResources().getString(R.string.general_error_message), task.getException());
                         }
                     }
                 });
