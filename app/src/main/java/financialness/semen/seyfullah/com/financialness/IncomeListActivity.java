@@ -43,6 +43,9 @@ public class IncomeListActivity extends AppCompatActivity implements NavigationL
     private IncomeAdapter mAdapter;
     private IncomeViewModel mIncomeViewModel;
 
+    /*
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -67,7 +70,7 @@ public class IncomeListActivity extends AppCompatActivity implements NavigationL
                 }
             }
         });
-        handleSwipe(mAdapter, mRecyclerView);
+        handleSwipe(mAdapter, mRecyclerView); // Delete the income after swipe
 
         bottomNavigationClickListener();// listener for when somebody clicks on one of the buttons in the bottom navigation
 
