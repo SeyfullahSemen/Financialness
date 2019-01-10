@@ -33,10 +33,12 @@ import java.util.Map;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import financialness.semen.seyfullah.com.financialness.Entity.FetchIncomes;
 import financialness.semen.seyfullah.com.financialness.Entity.SavingsSetAside;
 import financialness.semen.seyfullah.com.financialness.Entity.TotalSaved;
 import financialness.semen.seyfullah.com.financialness.Listeners.NavigationListener;
 import financialness.semen.seyfullah.com.financialness.Listeners.ObserveValuesListener;
+import financialness.semen.seyfullah.com.financialness.ViewModels.IncomeViewModel;
 import financialness.semen.seyfullah.com.financialness.ViewModels.SavingsViewModel;
 import financialness.semen.seyfullah.com.financialness.ViewModels.TotalSavedViewModel;
 
@@ -72,9 +74,11 @@ public class SavingsActivity extends AppCompatActivity implements NavigationList
     // Create new instances of the viewmodels
     private SavingsViewModel mSavingsViewModel;
     private TotalSavedViewModel mTotalSavedViewModel;
+    private IncomeViewModel mIncomeViewModel;
     // Create lists in which the newly added values will be added to.
     private List<SavingsSetAside> mSavingsSetASide;
     private List<TotalSaved> mTotalSaved;
+    private List<FetchIncomes> mIncomes;
     // Variable to save the last income. This value will be retrieved from firestore.
     private double lastIncome;
 
@@ -85,20 +89,15 @@ public class SavingsActivity extends AppCompatActivity implements NavigationList
         ButterKnife.bind(this); // In order to make Butterknife work, I need to add the bind() method.
         mTotalSaved = new ArrayList<>(); // Make new instance of the list
         mSavingsSetASide = new ArrayList<>(); // Make a new instance of the list.
-        getLastIncome(); // Method which will get the last income. This value will come from the firestore.
-        bottomNavigationClickListener(); // Method to survey the clicks on the bottomNavigation.
+        mIncomes = new ArrayList<>(); // Make a new instance of the list.
         mSavingsViewModel = new SavingsViewModel(getApplicationContext()); // Make new instance of the SavingsViewModel.
         mTotalSavedViewModel = new TotalSavedViewModel(getApplicationContext()); // make a new instance of the totalsavedviewmodel
+        mIncomeViewModel = new IncomeViewModel(getApplicationContext()); // Make a new instacne of the incomeviewmodel
+        getLastIncome(); // Method which will get the last income. This value will come from the firestore.
+        bottomNavigationClickListener(); // Method to survey the clicks on the bottomNavigation.
+
         observeNewAddedValues(); // Observe newly added values.
-        mTotalSavedViewModel.getAllTotalSaved().observe(this, new Observer<List<TotalSaved>>() {
-            @Override
-            public void onChanged(@Nullable List<TotalSaved> totalSaveds) {
-                mTotalSaved = totalSaveds;
-                mTotalSavedText.setText("" + mTotalSaved.get(mTotalSaved.size() - 1).totalsaved);
-
-            }
-        });
-
+        showTotalSaved();
 
     }
 
@@ -129,14 +128,6 @@ public class SavingsActivity extends AppCompatActivity implements NavigationList
     @SuppressLint("SetTextI18n")
     private void addToTheCurrentSavings(final double addNewSaving) {
         try {
-            mTotalSavedViewModel.getAllTotalSaved().observe(this, new Observer<List<TotalSaved>>() {
-                @Override
-                public void onChanged(@Nullable List<TotalSaved> totalSaveds) {
-                    mTotalSaved = totalSaveds;
-                    swapTotalSavedList(totalSaveds);
-
-                }
-            });
             if (mTotalSaved.size() == 0) {
                 mTotalSavedViewModel.insertTotalSaved(new TotalSaved(addNewSaving));
             } else {
@@ -216,7 +207,6 @@ public class SavingsActivity extends AppCompatActivity implements NavigationList
             @Override
             public void onChanged(@Nullable List<SavingsSetAside> asides) {
                 mSavingsSetASide = asides;
-                swapList(asides);
             }
         });
 
@@ -231,6 +221,7 @@ public class SavingsActivity extends AppCompatActivity implements NavigationList
 
             }
         });
+
     }
 
     /*
@@ -289,16 +280,6 @@ public class SavingsActivity extends AppCompatActivity implements NavigationList
 
     /*
      * @param newList
-     */
-    public void swapList(List<SavingsSetAside> newList) {
-        if (mSavingsSetASide.size() != 0) {
-            Log.i(TAG, "swapList: " + mSavingsSetASide.size());
-        }
-        mSavingsSetASide = newList;
-    }
-
-    /*
-     * @param newList
      * @return
      */
     public List<TotalSaved> swapTotalSavedList(List<TotalSaved> newList) {
@@ -308,4 +289,22 @@ public class SavingsActivity extends AppCompatActivity implements NavigationList
         mTotalSaved = newList;
         return mTotalSaved;
     }
+
+    /**
+     * Show the complete amount of what the user has saved until now.
+     */
+    private void showTotalSaved() {
+        mTotalSavedViewModel.getAllTotalSaved().observe(this, new Observer<List<TotalSaved>>() {
+            @Override
+            public void onChanged(@Nullable List<TotalSaved> totalSaveds) {
+                mTotalSaved = totalSaveds;
+                if (totalSaveds.size() != 0) {
+                    mTotalSavedText.setText("€ " + mTotalSaved.get(mTotalSaved.size() - 1).totalsaved + " ,-");
+                } else {
+                    Log.i(TAG, "onChanged: No values");
+                }
+            }
+        });
+    }
+
 }
