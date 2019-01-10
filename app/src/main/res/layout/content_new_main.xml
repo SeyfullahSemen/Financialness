@@ -122,7 +122,7 @@
             android:layout_gravity="center_horizontal|top"
             android:layout_marginBottom="10dp"
             android:fontFamily="@font/nunito"
-            android:text="Optimale uitgave"
+            android:text="@string/optimale_uitgave_header"
             android:textColor="@color/textColor"
             android:textSize="20sp" />
 

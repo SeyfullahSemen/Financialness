@@ -32,4 +32,6 @@
     <string name="euro_sign">€\t</string>
     <string name="deleted_income">Inkomen is verwijderd</string>
     <string name="general_error_message">Er is een error</string>
+    <string name="save_btn_text">Save</string>
+    <string name="optimale_uitgave_header">Optimale uitgave</string>
 </resources>

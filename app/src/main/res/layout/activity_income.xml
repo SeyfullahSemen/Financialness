@@ -86,7 +86,7 @@
         android:elevation="10dp"
         android:fontFamily="@font/nunito"
         android:foreground="?android:attr/selectableItemBackground"
-        android:text="Save"
+        android:text="@string/save_btn_text"
         android:textColor="@android:color/white"
         android:textSize="25sp"
         android:translationZ="15dp"
