@@ -33,7 +33,7 @@ public class SavingsRepository {
     }
 
     /*
-     * @return
+     * @return mSetAside
      */
     public LiveData<List<SavingsSetAside>> getAllSetAside() {
         return mSetAside;

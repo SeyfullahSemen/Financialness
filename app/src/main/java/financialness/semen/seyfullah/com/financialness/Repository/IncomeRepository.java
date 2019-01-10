@@ -38,14 +38,14 @@ public class IncomeRepository {
 
     /*
      *
-     * @return
+     * @return List of incomes and id's of the incomes
      */
     public LiveData<List<Income>> getAllIncomes() {
         return mIncomes;
     }
 
     /*
-     * @return
+     * @return only the incomes of the user.
      */
     public LiveData<List<FetchIncomes>> getIncomeOnly() {
         return mIncomeOnly;

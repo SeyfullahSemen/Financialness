@@ -2,6 +2,8 @@ package financialness.semen.seyfullah.com.financialness.Models;
 
 /*
  * Created by Seyfullah Semen on 29-11-2018.
+ *
+ * This is the model class for the income.
  */
 public class UserIncome {
     private double income;

@@ -94,11 +94,10 @@ public class SavingsActivity extends AppCompatActivity implements NavigationList
             @Override
             public void onChanged(@Nullable List<TotalSaved> totalSaveds) {
                 mTotalSaved = totalSaveds;
-                mTotalSavedText.setText(""+mTotalSaved.get(mTotalSaved.size() - 1).totalsaved);
+                mTotalSavedText.setText("" + mTotalSaved.get(mTotalSaved.size() - 1).totalsaved);
 
             }
         });
-
 
 
     }
@@ -145,7 +144,7 @@ public class SavingsActivity extends AppCompatActivity implements NavigationList
                 Log.i(TAG, "addToTheCurrentSavings: " + mTotalSaved.get(mTotalSaved.size() - 1).totalsaved);
                 int id = mTotalSaved.get(mTotalSaved.size() - 1).TotalSavedId;
                 mTotalSavedViewModel.updateTotalSaved(id, calculation);
-                mTotalSavedText.setText(""+mTotalSaved.get(mTotalSaved.size() - 1).totalsaved);
+                mTotalSavedText.setText("" + mTotalSaved.get(mTotalSaved.size() - 1).totalsaved);
             }
         } catch (Exception ex) {
             Log.i(TAG, "There is something wrong with adding up new set aside value:  " + ex.getMessage());
@@ -189,8 +188,8 @@ public class SavingsActivity extends AppCompatActivity implements NavigationList
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        if (task.isSuccessful()) {
-                            for (QueryDocumentSnapshot document : task.getResult()) {
+                        if (task.isSuccessful()) { // Check if the task is successfully achieved.
+                            for (QueryDocumentSnapshot document : task.getResult()) { // Loop through the documents in firestore
                                 Log.d(TAG, document.getId() + " => " + Double.valueOf(document.getData().get("income").toString()));
                                 mLastIncomeEdit.setText("€ " + Double.valueOf(document.getData().get("income").toString()) + " ,-");
                                 lastIncome = Double.valueOf(document.getData().get("income").toString());
@@ -237,7 +236,7 @@ public class SavingsActivity extends AppCompatActivity implements NavigationList
     }
 
     /*
-     *
+     * When the user presses back, than I want the user to be able to the main page.
      */
     @Override
     public void onBackPressed() {
@@ -254,6 +253,7 @@ public class SavingsActivity extends AppCompatActivity implements NavigationList
      */
     @Override
     public void bottomNavigationClickListener() {
+
         mBottomNavigationSavingsPage.setSelectedItemId(R.id.save_page);
         mBottomNavigationSavingsPage.setOnNavigationItemSelectedListener(
 

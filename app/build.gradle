@@ -53,8 +53,6 @@ dependencies {
 
     implementation 'com.google.firebase:firebase-firestore:17.1.2'
 
-    implementation 'com.github.PhilJay:MPAndroidChart:v3.0.3'
-
     // ViewModel and LiveData
     implementation "android.arch.lifecycle:extensions:$lifecycle_version"
     // alternatively - Lifecycles only (no ViewModel or LiveData).

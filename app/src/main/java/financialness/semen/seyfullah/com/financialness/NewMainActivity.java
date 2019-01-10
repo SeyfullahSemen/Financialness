@@ -48,8 +48,8 @@ public class NewMainActivity extends AppCompatActivity implements IsNetworkAvail
      * butterknife annotations.
      * The butterknife library will make the findviewbyId method unecassry
      * */
-    @BindView(R.id.bubbleChart)
-    LineChartView mBubbleChart;
+    @BindView(R.id.lineChart)
+    LineChartView mLineChart;
     @BindView(R.id.inkomenCard)
     CardView mInkomenCard;
     @BindView(R.id.uitgaveCard)
@@ -61,27 +61,29 @@ public class NewMainActivity extends AppCompatActivity implements IsNetworkAvail
     @BindView(R.id.main_layout_content_main)
     ConstraintLayout mMainLayout;
 
-    /**
-     * These are some variables I need in order to make the chart.
-     * I want to set the shape the axes and labels for the chart.
-     */
-    private int numberOfLines = 3;
-    private int maxNumberOfLines = 4;
-    private int numberOfPoints = 13;
-
     /*
+     * Make a new list if axisvalues this list will be used for adding new values
+     * on the X axis.
      *
+     * Also I have made a new instance of the linechartdata. This will be used for adding
+     * values into the chart.
      */
     List<AxisValue> xAxisValue = new ArrayList<>();
     Axis axisX = new Axis();
     private LineChartData data = new LineChartData();
-    float[][] randomNumbersTab = new float[maxNumberOfLines][numberOfPoints];
 
     /*
-     *
+     * I want the chart to have axis and I want to have it axesnames
+     * So Here I made two boolean values and set them to true. When I call the function
+     * of adding new axes names or to tell the chart that I want the chart to have axes
+     * I just need to pass these two values to it.
      */
     private boolean hasAxes = true;
     private boolean hasAxesNames = true;
+    private boolean isInteractive = true;
+    private boolean isSelectionEnabled = true;
+
+    // Make a new instance of the firestore. This will make sure that I can make calls to my firestore data.
     FirebaseFirestore db = FirebaseFirestore.getInstance();
 
     // Create new viemodels
@@ -89,7 +91,9 @@ public class NewMainActivity extends AppCompatActivity implements IsNetworkAvail
     private SavingsViewModel mSavingsViewModel;
 
     /*
-     *
+     * Make new instances of two lists. These two lists are completely different from each other.
+     * One of the lists will only be used for fetching data about the income and the other one can fetch
+     * the id and the income.
      */
     private List<Income> mIncomes = new ArrayList<>();
     private List<FetchIncomes> mOnlyIncomes = new ArrayList<>();
@@ -129,7 +133,7 @@ public class NewMainActivity extends AppCompatActivity implements IsNetworkAvail
         }, 400);
     }
 
-    /**
+    /*
      * Add a annotation from butterknife to make it possible to click on the uitgave button.
      */
     @OnClick(R.id.uitgaveCard)
@@ -150,8 +154,15 @@ public class NewMainActivity extends AppCompatActivity implements IsNetworkAvail
      * I want to have a connection to firebase to save and retrieve data.
      */
     private void generateData() {
-        final List<PointValue> values = new ArrayList<>();
-        final List<Line> lines = new ArrayList<>();
+        final List<PointValue> values = new ArrayList<>(); // Make new list which will hold all of the points in the chart.
+        final List<Line> lines = new ArrayList<>(); // Make a new list which will hold all of the lines in the chart.
+        /*
+         * Call the observer of the getIncomesOnly function. This function will make sure to only
+         * fetch the incomes of the user. Inside the body of this observer I have a check
+         * which checks whether the List is empty or not.
+         *
+         * If the list is not empty it will loop through all the values and add them to the chart.
+         */
         mIncomeViewModel.getIncomesOnly().observe(this, new Observer<List<FetchIncomes>>() {
             @Override
             public void onChanged(@Nullable List<FetchIncomes> fetchIncomes) {
@@ -169,21 +180,23 @@ public class NewMainActivity extends AppCompatActivity implements IsNetworkAvail
                             xAxisValue.clear();
                         }
                     }
+                    // Set the color of the line within the chart
                     Line line = new Line(values).setColor(getResources().getColor(R.color.blue1)).setCubic(true);
                     line.setPointRadius(5);
                     line.setHasLabelsOnlyForSelected(true);
                     lines.add(line);
 
                     data.setLines(lines);
-
+                    // Check if I wanted my chart to have axes. if so than add the new axes to it.
                     if (hasAxes) {
                         axisX.setValues(xAxisValue);
                         Axis axisY = new Axis().setHasLines(true);
                         axisY.setTextSize(9);
                         axisX.setTextSize(9);
-                        if (hasAxesNames) {
+                        if (hasAxesNames) { // Check if hasAxesNames is set to true. If so than set the name of the axes.
                             axisX.setName("Maand");
                         }
+                        // Set the name of the axes.
                         data.setAxisXBottom(axisX);
                         data.setAxisYLeft(axisY);
                     } else {
@@ -192,14 +205,15 @@ public class NewMainActivity extends AppCompatActivity implements IsNetworkAvail
                     }
 
                     data.setBaseValue(Float.NEGATIVE_INFINITY);
-                    mBubbleChart.setLineChartData(data);
+                    // Set the data into the chart.
+                    mLineChart.setLineChartData(data);
                 }
             }
         });
 
 
-        mBubbleChart.setInteractive(true);
-        mBubbleChart.setValueSelectionEnabled(true);
+        mLineChart.setInteractive(isInteractive); // Make this true in order to make the points clickable and interactive
+        mLineChart.setValueSelectionEnabled(isSelectionEnabled); // Set this to true to enable the fact that you can see the value of a point after clicking on it.
 
 
     }

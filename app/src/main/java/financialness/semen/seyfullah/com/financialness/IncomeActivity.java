@@ -65,12 +65,10 @@ public class IncomeActivity extends AppCompatActivity implements IsNetworkAvaila
     @BindView(R.id.listIncomePageButton)
     FloatingActionButton mListIncomePageButton;
 
-    private int numberOfLines = 3;
-    private int maxNumberOfLines = 4;
-    private int numberOfPoints = 13;
-
+    // This List will be used in adding new values on the X axis on the axis of the chart.
     List<AxisValue> xAxisValue = new ArrayList<>();
     Axis axisX = new Axis();
+    // Create a new instance of the LineChartData Class.
     private LineChartData data = new LineChartData();
 
     private boolean hasAxes = true;
@@ -346,6 +344,10 @@ public class IncomeActivity extends AppCompatActivity implements IsNetworkAvaila
         });
     }
 
+    /*
+     * Update the List of incomes after changes have been made
+     * @param newList
+     */
     public void swapList(List<Income> newList) {
         mIncomes = newList;
     }

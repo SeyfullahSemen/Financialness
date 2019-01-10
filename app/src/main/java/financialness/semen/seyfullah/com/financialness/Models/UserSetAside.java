@@ -2,6 +2,8 @@ package financialness.semen.seyfullah.com.financialness.Models;
 
 /*
  * Created by Seyfullah Semen on 16-12-2018.
+ *
+ * This is the model class for
  */
 public class UserSetAside {
     private double setAside;

@@ -33,7 +33,7 @@ public class TotalSavedRepository {
     }
 
     /*
-     * @return
+     * @return totalsaved
      */
     public LiveData<List<TotalSaved>> getAllSetAside() {
         return mTotalSaved;

@@ -72,7 +72,6 @@ public class IncomeListActivity extends AppCompatActivity implements NavigationL
 
     /*
      * This will notify the recyclerview that there has been a change within the values
-     *
      */
     private void updateUI() {
         if (mAdapter == null) {
@@ -83,7 +82,7 @@ public class IncomeListActivity extends AppCompatActivity implements NavigationL
         }
     }
 
-    /**
+    /*
      * When the back button has been pressed I want the user to go back to the income page.
      */
     @Override

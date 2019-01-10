@@ -24,7 +24,6 @@ public class IncomeAdapter extends RecyclerView.Adapter<IncomeViewHolder> {
     private Context mContext;
 
     /**
-     *
      * @param mIncomes
      * @param mContext
      */
