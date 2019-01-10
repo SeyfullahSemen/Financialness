@@ -240,8 +240,14 @@ public class NewMainActivity extends AppCompatActivity implements IsNetworkAvail
                         }
                     });
         } else {
-            observeNewAddedValues();
-            mOptimaleUitgaveText.setText("€ " + mIncomes.get(mIncomes.size() - 1).income / 100 * 20 + " ,-");
+            mIncomeViewModel.getAllIncome().observe(this, new Observer<List<Income>>() {
+                @Override
+                public void onChanged(@Nullable List<Income> incomes) {
+                    mIncomes = incomes;
+                    mOptimaleUitgaveText.setText("€ " + mIncomes.get(mIncomes.size() - 1).income / 100 * 20 + " ,-");
+                }
+            });
+
         }
     }
 

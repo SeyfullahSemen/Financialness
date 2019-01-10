@@ -221,8 +221,6 @@ public class SavingsActivity extends AppCompatActivity implements NavigationList
         });
 
         /*
-
-        /*
          * This one will check if there is a change in the totalsaved value.
          */
         mTotalSavedViewModel.getAllTotalSaved().observe(this, new Observer<List<TotalSaved>>() {
