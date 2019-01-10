@@ -12,9 +12,8 @@ import financialness.semen.seyfullah.com.financialness.Repository.TotalSavedRepo
  * Created by Seyfullah Semen on 30-12-2018.
  */
 public class TotalSavedViewModel {
-    /*
-     *
-     */
+
+    // Create new instances.
     private TotalSavedRepository mTotalRepository;
     private LiveData<List<TotalSaved>> mTotalSaved;
 
@@ -27,7 +26,7 @@ public class TotalSavedViewModel {
     }
 
     /*
-     * @return
+     * @return the total amount a user has saved.
      */
     public LiveData<List<TotalSaved>> getAllTotalSaved() {
         return mTotalSaved;
@@ -41,7 +40,6 @@ public class TotalSavedViewModel {
     }
 
     /*
-     *
      * @param id
      * @param totalSaved
      */

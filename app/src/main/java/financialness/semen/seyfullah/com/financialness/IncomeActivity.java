@@ -72,6 +72,7 @@ public class IncomeActivity extends AppCompatActivity implements IsNetworkAvaila
     // Create a new instance of the LineChartData Class.
     private LineChartData data = new LineChartData();
 
+    // Create two boolean values for the chart. This values will determine whether the chart will have axes and axes names.
     private boolean hasAxes = true;
     private boolean hasAxesNames = false;
 

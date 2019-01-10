@@ -64,7 +64,6 @@ public class IncomeRepository {
     }
 
     /*
-     *
      * @param income
      */
     public void deleteIncome(final Income income) {

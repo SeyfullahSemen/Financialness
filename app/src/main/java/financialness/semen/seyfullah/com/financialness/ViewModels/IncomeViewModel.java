@@ -15,9 +15,8 @@ import financialness.semen.seyfullah.com.financialness.Repository.IncomeReposito
  * Created by Seyfullah Semen on 16-12-2018.
  */
 public class IncomeViewModel extends ViewModel {
-    /**
-     *
-     */
+
+    // Make new instances
     private IncomeRepository mIncomeRepository;
     private LiveData<List<Income>> mIncomes;
     private LiveData<List<FetchIncomes>> mOnlyIncomes;
@@ -32,14 +31,14 @@ public class IncomeViewModel extends ViewModel {
     }
 
     /*
-     * @return
+     * @return income, id list
      */
     public LiveData<List<Income>> getAllIncome() {
         return mIncomes;
     }
 
     /*
-     * @return
+     * @return income list
      */
     public LiveData<List<FetchIncomes>> getIncomesOnly() {
         return mOnlyIncomes;

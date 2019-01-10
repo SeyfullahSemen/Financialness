@@ -13,9 +13,8 @@ import financialness.semen.seyfullah.com.financialness.Repository.SavingsReposit
  * Created by Seyfullah Semen on 16-12-2018.
  */
 public class SavingsViewModel extends ViewModel {
-    /*
-     *
-     */
+
+    // Create new instances
     private SavingsRepository mSavingsRepository;
     private LiveData<List<SavingsSetAside>> mSetAside;
 
@@ -28,7 +27,7 @@ public class SavingsViewModel extends ViewModel {
     }
 
     /*
-     * @return
+     * @return the savings list
      */
     public LiveData<List<SavingsSetAside>> getAllSetAside() {
         return mSetAside;

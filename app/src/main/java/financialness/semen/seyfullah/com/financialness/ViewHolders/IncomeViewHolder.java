@@ -12,7 +12,7 @@ import financialness.semen.seyfullah.com.financialness.R;
  */
 public class IncomeViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
     /*
-     *
+     * Make the instances of the views I will be using for the viewholder.
      */
     public final TextView mIncomeHeaderText;
     public final TextView mIncomeOfUser;

@@ -182,7 +182,7 @@ public class SavingsActivity extends AppCompatActivity implements NavigationList
                         if (task.isSuccessful()) { // Check if the task is successfully achieved.
                             for (QueryDocumentSnapshot document : task.getResult()) { // Loop through the documents in firestore
                                 Log.d(TAG, document.getId() + " => " + Double.valueOf(document.getData().get("income").toString()));
-                                mLastIncomeEdit.setText("€ " + Double.valueOf(document.getData().get("income").toString()) + " ,-");
+                                mLastIncomeEdit.setText(getResources().getString(R.string.euro_sign) + Double.valueOf(document.getData().get("income").toString()) + " ,-");
                                 lastIncome = Double.valueOf(document.getData().get("income").toString());
                             }
                         } else {

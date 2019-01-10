@@ -25,8 +25,13 @@ public abstract class AppDatabase extends RoomDatabase {
 
     private static AppDatabase sInstance;
 
-    private final static String NAME_DATABASE = "boost_db";
+    private final static String NAME_DATABASE = "boost_db";// Create the name of the DB.
 
+    /*
+     *
+     * @param context
+     * @return
+     */
     public static AppDatabase getInstance(Context context) {
         if (sInstance == null) {
             sInstance = Room.databaseBuilder(context, AppDatabase.class, NAME_DATABASE).build();

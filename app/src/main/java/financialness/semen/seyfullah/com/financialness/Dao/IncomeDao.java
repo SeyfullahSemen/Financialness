@@ -30,5 +30,5 @@ public interface IncomeDao {
 
     // Delete income
     @Delete
-    public void deleteIncome(Income income);
+    void deleteIncome(Income income);
 }

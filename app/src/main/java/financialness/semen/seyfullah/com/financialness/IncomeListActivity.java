@@ -36,9 +36,7 @@ public class IncomeListActivity extends AppCompatActivity implements NavigationL
     @BindView(R.id.bottom_navigation_income_list_page)
     BottomNavigationView mBottomNavigationIncomeListPage;
 
-    /*
-     * Declare some variables in order to make use of them
-     */
+    // Declare the variables we need.
     private List<Income> mIncomes;
     private IncomeAdapter mAdapter;
     private IncomeViewModel mIncomeViewModel;

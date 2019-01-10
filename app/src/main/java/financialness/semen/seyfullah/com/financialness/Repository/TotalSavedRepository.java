@@ -16,7 +16,7 @@ import financialness.semen.seyfullah.com.financialness.Entity.TotalSaved;
  */
 public class TotalSavedRepository {
     /*
-     *
+     * Initialize new instances of the variables
      */
     private AppDatabase mAppDatabase;
     private TotalSavedDao mTotalSavedDao;
