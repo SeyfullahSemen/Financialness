@@ -231,7 +231,7 @@ public class NewMainActivity extends AppCompatActivity implements IsNetworkAvail
                             if (task.isSuccessful()) {
                                 for (QueryDocumentSnapshot document : task.getResult()) {
                                     Log.d(TAG, document.getId() + " => " + Double.valueOf(document.getData().get("income").toString()));
-                                    mOptimaleUitgaveText.setText("€ " + Double.valueOf(document.getData().get("income").toString()) / 100 * 20 + " ,-");
+                                    mOptimaleUitgaveText.setText(getResources().getString(R.string.euro_sign) + Double.valueOf(document.getData().get("income").toString()) / 100 * 20 + " ,-");
 
                                 }
                             } else {
@@ -244,7 +244,7 @@ public class NewMainActivity extends AppCompatActivity implements IsNetworkAvail
                 @Override
                 public void onChanged(@Nullable List<Income> incomes) {
                     mIncomes = incomes;
-                    mOptimaleUitgaveText.setText("€ " + mIncomes.get(mIncomes.size() - 1).income / 100 * 20 + " ,-");
+                    mOptimaleUitgaveText.setText(getResources().getString(R.string.euro_sign) + mIncomes.get(mIncomes.size() - 1).income / 100 * 20 + " ,-");
                 }
             });
 

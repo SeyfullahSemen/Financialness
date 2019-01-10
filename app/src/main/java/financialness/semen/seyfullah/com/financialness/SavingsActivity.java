@@ -299,7 +299,7 @@ public class SavingsActivity extends AppCompatActivity implements NavigationList
             public void onChanged(@Nullable List<TotalSaved> totalSaveds) {
                 mTotalSaved = totalSaveds;
                 if (totalSaveds.size() != 0) {
-                    mTotalSavedText.setText("€ " + mTotalSaved.get(mTotalSaved.size() - 1).totalsaved + " ,-");
+                    mTotalSavedText.setText(getResources().getString(R.string.euro_sign) + mTotalSaved.get(mTotalSaved.size() - 1).totalsaved + " ,-");
                 } else {
                     Log.i(TAG, "onChanged: No values");
                 }
